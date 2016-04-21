@@ -162,12 +162,19 @@
         }
     }
     
-    if (_ballIndex <= _circleArray.count) {
+    if (_ballIndex <= _circleArray.count && self.superview) {
          __weak __typeof(self) weakSelf = self;
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf addAnimation];
 //        });
         
+    }else{
+        [_ball removeFromSuperlayer];
+        [_ball removeAllAnimations];
+        for (CALayer* layer in _circleArray) {
+            [layer removeFromSuperlayer];
+            [layer removeAllAnimations];
+        }
     }
 }
 @end
